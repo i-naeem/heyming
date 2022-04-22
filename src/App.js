@@ -2,18 +2,21 @@ import React from 'react';
 import {
   Box,
   Text,
+  Link,
   theme,
   HStack,
   Heading,
   Container,
   SimpleGrid,
   ChakraProvider,
+  IconButton,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
+import { FaGithub } from 'react-icons/fa';
 import { APP_NAME } from './configs/constants';
 import UserInput from './components/UserInput';
-import useHammingCode from './services/HammingCode/useHammingCode';
 import BitsArray from './components/BitsArray';
+import { ColorModeSwitcher } from './ColorModeSwitcher';
+import useHammingCode from './services/HammingCode/useHammingCode';
 
 function App() {
   const { hammingCode: bitsArray, getHammingCode } = useHammingCode();
@@ -35,8 +38,30 @@ function App() {
       >
         <Container maxW="container.xl">
           <HStack justifyContent="space-between">
-            <Text>{APP_NAME}</Text>
-            <ColorModeSwitcher justifySelf="flex-end" />
+            <Heading
+              bgGradient="linear(to-r, teal.500, green.500)"
+              bgClip="text"
+              as={Link}
+              href="/"
+            >
+              {APP_NAME}
+            </Heading>
+            <section>
+              <IconButton
+                size="md"
+                as="a"
+                href="#"
+                fontSize="lg"
+                marginLeft="2"
+                target="_blank"
+                color="current"
+                variant="outline"
+                aria-label="Link to github source"
+                icon={<FaGithub />}
+              />
+
+              <ColorModeSwitcher justifySelf="flex-end" />
+            </section>
           </HStack>
         </Container>
       </Box>
@@ -71,7 +96,10 @@ function App() {
         borderColor="gray.700"
       >
         <Text align="center" flexGrow={1}>
-          &copy; 2022 - {APP_NAME}
+          Developed by{' '}
+          <Link target="_blank" href="http://github.com/i-naeem">
+            Mohammad Naeem
+          </Link>
         </Text>
       </Box>
     </ChakraProvider>
