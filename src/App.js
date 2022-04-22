@@ -50,14 +50,14 @@ function App() {
               <IconButton
                 size="md"
                 as="a"
-                href="#"
                 fontSize="lg"
                 marginLeft="2"
                 target="_blank"
                 color="current"
                 variant="outline"
-                aria-label="Link to github source"
                 icon={<FaGithub />}
+                aria-label="Link to github source"
+                href="https://github.com/i-naeem/heyming"
               />
 
               <ColorModeSwitcher justifySelf="flex-end" />
