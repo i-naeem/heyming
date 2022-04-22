@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-const UserInput = ({ onSubmit }) => {
+const UserInput = ({ onSubmit, isLoading }) => {
   const [userData, setUserData] = useState('');
   const [invalid, setInvalid] = useState(false);
 
@@ -35,9 +35,7 @@ const UserInput = ({ onSubmit }) => {
     <form onSubmit={handleSubmit}>
       <HStack>
         <FormControl>
-          <FormLabel htmlFor="email">
-            Enter your message in binary format.
-          </FormLabel>
+          <FormLabel htmlFor="email">Enter your message</FormLabel>
 
           <Input
             value={userData}
@@ -52,9 +50,9 @@ const UserInput = ({ onSubmit }) => {
 
         <Button
           type="submit"
-          isLoading={false}
           colorScheme="green"
           disabled={isInvalid}
+          isLoading={isLoading}
           loadingText="Generating"
         >
           Generate

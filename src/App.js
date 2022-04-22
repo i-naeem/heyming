@@ -19,7 +19,11 @@ import { ColorModeSwitcher } from './ColorModeSwitcher';
 import useHammingCode from './services/HammingCode/useHammingCode';
 
 function App() {
-  const { hammingCode: bitsArray, getHammingCode } = useHammingCode();
+  const {
+    hammingCode: bitsArray,
+    getHammingCode,
+    isLoading,
+  } = useHammingCode();
 
   const onSubmit = input => {
     const bits = input.split('').map(bit => parseInt(bit));
@@ -70,7 +74,7 @@ function App() {
       <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
         <SimpleGrid columns={1}>
           <Box as="section" p="3">
-            <UserInput onSubmit={onSubmit} />
+            <UserInput onSubmit={onSubmit} isLoading={isLoading} />
           </Box>
           {bitsArray.length ? (
             <Box as="section" p="3">
