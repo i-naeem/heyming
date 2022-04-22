@@ -1,15 +1,15 @@
 import React from 'react';
 import {
-  ChakraProvider,
-  theme,
+  Box,
   Text,
+  theme,
   HStack,
   Container,
-  Box,
-  Heading,
+  ChakraProvider,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { APP_NAME } from './configs/constants';
+import UserInput from './components/UserInput';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
 
       {/* Main App */}
       <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
-        <Heading>Hello, Friend</Heading>
+        <UserInput onSubmit={v => console.log(v)} />
       </Box>
 
       {/* Footer */}
