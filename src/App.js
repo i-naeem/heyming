@@ -12,15 +12,15 @@ import {
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { APP_NAME } from './configs/constants';
 import UserInput from './components/UserInput';
-import { useState } from 'react';
+import useHammingCode from './services/HammingCode/useHammingCode';
 import BitsArray from './components/BitsArray';
 
 function App() {
-  const [bitsArray, setBitsArray] = useState([]);
+  const { hammingCode: bitsArray, getHammingCode } = useHammingCode();
 
   const onSubmit = input => {
     const bits = input.split('').map(bit => parseInt(bit));
-    setBitsArray(bits);
+    getHammingCode(bits);
   };
   return (
     <ChakraProvider theme={theme}>
