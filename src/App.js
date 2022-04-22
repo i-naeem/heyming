@@ -4,14 +4,24 @@ import {
   Text,
   theme,
   HStack,
+  Heading,
   Container,
+  SimpleGrid,
   ChakraProvider,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 import { APP_NAME } from './configs/constants';
 import UserInput from './components/UserInput';
+import { useState } from 'react';
+import BitsArray from './components/BitsArray';
 
 function App() {
+  const [bitsArray, setBitsArray] = useState([]);
+
+  const onSubmit = input => {
+    const bits = input.split('').map(bit => parseInt(bit));
+    setBitsArray(bits);
+  };
   return (
     <ChakraProvider theme={theme}>
       {/* Header */}
@@ -33,7 +43,20 @@ function App() {
 
       {/* Main App */}
       <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
-        <UserInput onSubmit={v => console.log(v)} />
+        <SimpleGrid columns={1}>
+          <Box as="section" p="3">
+            <UserInput onSubmit={onSubmit} />
+          </Box>
+          {bitsArray.length ? (
+            <Box as="section" p="3">
+              <Heading size="lg" mb="3">
+                Hamming Code
+              </Heading>
+
+              <BitsArray bitsArray={bitsArray} />
+            </Box>
+          ) : null}
+        </SimpleGrid>
       </Box>
 
       {/* Footer */}
