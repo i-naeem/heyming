@@ -1,5 +1,13 @@
 {
   "name": "heyming",
+  "description": "A hamming code encoder and decoder built with react",
+  "author": "Mohammad Naeem",
+  "keywords": [
+    "hamming code",
+    "encoding",
+    "decoding",
+    "chakra ui"
+  ],
   "version": "0.1.0",
   "private": true,
   "dependencies": {

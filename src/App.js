@@ -1,39 +1,55 @@
 import React from 'react';
 import {
   ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
+  Text,
+  HStack,
+  Container,
+  Box,
+  Heading,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import { APP_NAME } from './configs/constants';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
+      {/* Header */}
+      <Box
+        p={2}
+        d="flex"
+        as="header"
+        shadow="sm"
+        height={70}
+        alignItems="center"
+      >
+        <Container maxW="container.xl">
+          <HStack justifyContent="space-between">
+            <Text>{APP_NAME}</Text>
+            <ColorModeSwitcher justifySelf="flex-end" />
+          </HStack>
+        </Container>
+      </Box>
+
+      {/* Main App */}
+      <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
+        <Heading>Hello, Friend</Heading>
+      </Box>
+
+      {/* Footer */}
+      <Box
+        p={2}
+        d="flex"
+        shadow="sm"
+        as="footer"
+        height={70}
+        borderTop="1px"
+        alignItems="center"
+        borderColor="gray.700"
+      >
+        <Text align="center" flexGrow={1}>
+          &copy; 2022 - {APP_NAME}
+        </Text>
       </Box>
     </ChakraProvider>
   );
