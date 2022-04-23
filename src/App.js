@@ -4,20 +4,15 @@ import {
   Text,
   Link,
   theme,
-  HStack,
   Button,
   Heading,
-  Container,
-  IconButton,
   SimpleGrid,
   ChakraProvider,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { FaGithub } from 'react-icons/fa';
-import { APP_NAME } from './configs/constants';
+import Header from './components/Header';
 import UserInput from './components/UserInput';
 import BitsArray from './components/BitsArray';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
 import useHammingCode from './services/HammingCode/useHammingCode';
 
 function App() {
@@ -36,44 +31,7 @@ function App() {
   };
   return (
     <ChakraProvider theme={theme}>
-      {/* Header */}
-      <Box
-        p={2}
-        d="flex"
-        as="header"
-        shadow="sm"
-        height={70}
-        alignItems="center"
-      >
-        <Container maxW="container.xl">
-          <HStack justifyContent="space-between">
-            <Heading
-              bgGradient="linear(to-r, teal.500, green.500)"
-              bgClip="text"
-              as={Link}
-              href="/"
-            >
-              {APP_NAME}
-            </Heading>
-            <section>
-              <IconButton
-                size="md"
-                as="a"
-                fontSize="lg"
-                marginLeft="2"
-                target="_blank"
-                color="current"
-                variant="outline"
-                icon={<FaGithub />}
-                aria-label="Link to github source"
-                href="https://github.com/i-naeem/heyming"
-              />
-
-              <ColorModeSwitcher justifySelf="flex-end" />
-            </section>
-          </HStack>
-        </Container>
-      </Box>
+      <Header />
 
       {/* Main App */}
       <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
