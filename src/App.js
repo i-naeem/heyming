@@ -9,10 +9,10 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import UserInput from './components/UserInput';
 import BitsArray from './components/BitsArray';
 import useHammingCode from './services/HammingCode/useHammingCode';
-import Footer from './components/Footer';
 
 function App() {
   const {
@@ -61,6 +61,7 @@ function App() {
               </Box>
             </Box>
           ) : null}
+
           {bitsArray.length ? (
             <Box as="section" p="3">
               <Heading size="lg" mb="3">
