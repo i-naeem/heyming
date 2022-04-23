@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   Box,
-  Text,
-  Link,
   theme,
   Button,
   Heading,
@@ -14,6 +12,7 @@ import Header from './components/Header';
 import UserInput from './components/UserInput';
 import BitsArray from './components/BitsArray';
 import useHammingCode from './services/HammingCode/useHammingCode';
+import Footer from './components/Footer';
 
 function App() {
   const {
@@ -33,7 +32,6 @@ function App() {
     <ChakraProvider theme={theme}>
       <Header />
 
-      {/* Main App */}
       <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
         <SimpleGrid columns={1}>
           <Box as="section" p="3" mb="3">
@@ -75,24 +73,7 @@ function App() {
         </SimpleGrid>
       </Box>
 
-      {/* Footer */}
-      <Box
-        p={2}
-        d="flex"
-        shadow="sm"
-        as="footer"
-        height={70}
-        borderTop="1px"
-        alignItems="center"
-        borderColor="gray.700"
-      >
-        <Text align="center" flexGrow={1}>
-          Developed by{' '}
-          <Link target="_blank" href="http://github.com/i-naeem">
-            Mohammad Naeem
-          </Link>
-        </Text>
-      </Box>
+      <Footer />
     </ChakraProvider>
   );
 }
