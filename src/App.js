@@ -25,9 +25,9 @@ function App() {
     isLoading,
   } = useHammingCode();
 
-  const onSubmit = input => {
+  const onSubmit = (input, flag) => {
     const bits = input.split('').map(bit => parseInt(bit));
-    getHammingCode(bits);
+    getHammingCode(bits, flag);
   };
   return (
     <ChakraProvider theme={theme}>

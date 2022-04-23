@@ -1,16 +1,19 @@
 import {
   Input,
-  HStack,
   Button,
   FormLabel,
   FormControl,
   FormHelperText,
+  Switch,
+  useBoolean,
+  Box,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
 const UserInput = ({ onSubmit, isLoading }) => {
   const [userData, setUserData] = useState('');
   const [invalid, setInvalid] = useState(false);
+  const [isOddParity, handler] = useBoolean(false);
 
   const onInputChange = event => {
     let value = event.target.value;
@@ -28,26 +31,39 @@ const UserInput = ({ onSubmit, isLoading }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit(userData);
+    onSubmit(userData, isOddParity);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <HStack>
-        <FormControl>
-          <FormLabel htmlFor="email">Enter your message</FormLabel>
+      <FormControl mb="2">
+        <FormLabel htmlFor="user-input">Enter your message</FormLabel>
 
-          <Input
-            value={userData}
-            letterSpacing={5}
-            placeholder="110111"
-            isInvalid={isInvalid}
-            onChange={onInputChange}
-          />
+        <Input
+          id="user-input"
+          value={userData}
+          letterSpacing={[2, 5]}
+          placeholder="110111"
+          isInvalid={isInvalid}
+          onChange={onInputChange}
+        />
 
-          <FormHelperText>Your input must be in binary format.</FormHelperText>
-        </FormControl>
+        <FormHelperText>Your input must be in binary format.</FormHelperText>
+      </FormControl>
 
+      <FormControl display="flex" alignItems="center" mb="2">
+        <FormLabel htmlFor="parity-selector" mb="0">
+          Toggle this to use <strong>{isOddParity ? 'even' : 'odd'}</strong>{' '}
+          parity.
+        </FormLabel>
+        <Switch
+          id="parity-selector"
+          value={isOddParity}
+          onChange={handler.toggle}
+        />
+      </FormControl>
+
+      <Box d="flex" justifyContent={['end', 'flex-start']}>
         <Button
           type="submit"
           colorScheme="green"
@@ -57,7 +73,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
         >
           Generate
         </Button>
-      </HStack>
+      </Box>
     </form>
   );
 };

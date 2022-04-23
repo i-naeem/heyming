@@ -16,7 +16,7 @@ const useHammingCode = () => {
   const getHammingCode = async (bitsArray, isOdd) => {
     try {
       setStatus(() => STATES.loading);
-      const response = await encode(bitsArray);
+      const response = await encode(bitsArray, isOdd);
       setStatus(() => STATES.success);
       setHammingCode(() => response.codeArray);
     } catch (error) {
