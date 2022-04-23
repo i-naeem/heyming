@@ -7,9 +7,9 @@ import {
   HStack,
   Heading,
   Container,
+  IconButton,
   SimpleGrid,
   ChakraProvider,
-  IconButton,
 } from '@chakra-ui/react';
 import { FaGithub } from 'react-icons/fa';
 import { APP_NAME } from './configs/constants';

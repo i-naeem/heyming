@@ -1,16 +1,22 @@
 import {
+  Box,
   Input,
   Button,
-  FormLabel,
-  FormControl,
-  FormHelperText,
+  HStack,
   Switch,
+  FormLabel,
   useBoolean,
-  Box,
+  IconButton,
+  FormControl,
+  useMediaQuery,
+  FormHelperText,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { FaRandom } from 'react-icons/fa';
+import getRandomBits from '../helpers/getRandomBits';
 
 const UserInput = ({ onSubmit, isLoading }) => {
+  const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
   const [userData, setUserData] = useState('');
   const [invalid, setInvalid] = useState(false);
   const [isOddParity, handler] = useBoolean(false);
@@ -34,23 +40,48 @@ const UserInput = ({ onSubmit, isLoading }) => {
     onSubmit(userData, isOddParity);
   };
 
+  const handleRandomButtonClick = () => {
+    setUserData(getRandomBits());
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <FormControl mb="2">
         <FormLabel htmlFor="user-input">Enter your message</FormLabel>
 
-        <Input
-          id="user-input"
-          value={userData}
-          letterSpacing={[2, 5]}
-          placeholder="110111"
-          isInvalid={isInvalid}
-          onChange={onInputChange}
-        />
+        <HStack>
+          <Input
+            size="md"
+            variant="filled"
+            id="user-input"
+            value={userData}
+            letterSpacing={[2, 5]}
+            placeholder="110111"
+            isInvalid={isInvalid}
+            onChange={onInputChange}
+          />
 
+          {isLargerThan900 ? (
+            <Button
+              px="6"
+              size="md"
+              colorScheme="blue"
+              leftIcon={<FaRandom />}
+              onClick={handleRandomButtonClick}
+            >
+              Generate Random Bits
+            </Button>
+          ) : (
+            <IconButton
+              colorScheme="blue"
+              icon={<FaRandom />}
+              aria-label="Generate Random Bits"
+              onClick={handleRandomButtonClick}
+            />
+          )}
+        </HStack>
         <FormHelperText>Your input must be in binary format.</FormHelperText>
       </FormControl>
-
       <FormControl display="flex" alignItems="center" mb="2">
         <FormLabel htmlFor="parity-selector" mb="0">
           Toggle this to use <strong>{isOddParity ? 'even' : 'odd'}</strong>{' '}
@@ -67,7 +98,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
         <Button
           type="submit"
           colorScheme="green"
-          disabled={isInvalid}
+          disabled={isInvalid || userData === ''}
           isLoading={isLoading}
           loadingText="Generating"
         >
