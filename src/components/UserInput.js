@@ -5,47 +5,27 @@ import {
   HStack,
   Switch,
   FormLabel,
-  useBoolean,
   IconButton,
   InputGroup,
   FormControl,
   useMediaQuery,
   InputRightElement,
 } from '@chakra-ui/react';
+import useInput from '../hooks/useInput';
 import { useState, useEffect } from 'react';
 import { FaRandom, FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import getRandomBits from '../helpers/getRandomBits';
 
 const UserInput = ({ onSubmit, isLoading }) => {
   const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
-  const [userData, setUserData] = useState('');
-  const [invalid, setInvalid] = useState(false);
-  const [isOddParity, handler] = useBoolean(false);
+  const [isOddParity, setOddParity] = useState(false);
+  const { isInvalid, userData, setUserData, onInputChange } = useInput();
 
-  const onInputChange = event => {
-    let value = event.target.value;
+  const size = 'md';
 
-    if (value !== '' && value.search(/[^10\s]+/g) > -1) {
-      setInvalid(true);
-    } else {
-      setInvalid(false);
-    }
+  const toggleOddParity = () => setOddParity(p => !p);
 
-    setUserData(value);
-  };
-
-  const isInvalid = invalid && userData !== '';
-  const size = isLargerThan900 ? 'md' : 'sm';
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    const dataBits = userData.replace(/\s/g, '');
-    onSubmit(dataBits, isOddParity);
-  };
-
-  const handleRandomButtonClick = () => {
-    setUserData(getRandomBits());
-  };
+  const handleRandomButtonClick = () => setUserData(getRandomBits());
 
   useEffect(() => {
     const randomBits = getRandomBits(4, 16);
@@ -54,6 +34,12 @@ const UserInput = ({ onSubmit, isLoading }) => {
 
     // eslint-disable-next-line
   }, []);
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    const dataBits = userData.replace(/\s/g, '');
+    onSubmit(dataBits, isOddParity);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -119,7 +105,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
         <Switch
           id="parity-selector"
           value={isOddParity}
-          onChange={handler.toggle}
+          onChange={toggleOddParity}
         />
       </FormControl>
     </form>
