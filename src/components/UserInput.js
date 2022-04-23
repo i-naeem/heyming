@@ -12,7 +12,7 @@ import {
   useMediaQuery,
   InputRightElement,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaRandom, FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import getRandomBits from '../helpers/getRandomBits';
 
@@ -46,6 +46,14 @@ const UserInput = ({ onSubmit, isLoading }) => {
   const handleRandomButtonClick = () => {
     setUserData(getRandomBits());
   };
+
+  useEffect(() => {
+    const randomBits = getRandomBits(4, 16);
+    setUserData(randomBits);
+    onSubmit(randomBits);
+
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>

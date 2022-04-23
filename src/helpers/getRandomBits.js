@@ -1,5 +1,12 @@
-const getRandomBits = () => {
-  const size = Math.floor(Math.random() * (100 - 10 + 1) + 10);
+/**
+ * getRandomBis => returns random bits from min to max as string.
+ * @param {Number = 10} min
+ * @param {Number = 100} max
+ * @returns {String}
+ */
+
+const getRandomBits = (min = 10, max = 60) => {
+  const size = Math.floor(Math.random() * (max - min + 1) + min);
 
   let randomBits = '';
 
