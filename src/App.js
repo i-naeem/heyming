@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Box,
-  Text,
   theme,
   Button,
   Heading,
@@ -11,10 +10,10 @@ import {
 import { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import MetaGrid from './components/MetaGrid';
 import UserInput from './components/UserInput';
 import BitsArray from './components/BitsArray';
 import useHammingCode from './services/HammingCode/useHammingCode';
-import isPowerOf2 from './helpers/isPowerOfTwo';
 
 function App() {
   const {
@@ -30,7 +29,6 @@ function App() {
   } = useHammingCode();
 
   const [dataBits, setDataBits] = useState([]);
-  const padLength = hammingCodeSize.toString().length;
 
   const onSubmit = (input, flag) => {
     const bits = input.split('').map(bit => parseInt(bit));
@@ -48,46 +46,13 @@ function App() {
           </Box>
 
           {bitsArray.length ? (
-            <SimpleGrid columns={[1, 2]} mb="3" px="3">
-              <Box mb="2">
-                <Heading size="md" mb="sm">
-                  Efficiency
-                </Heading>
-                <Text>
-                  Since we have some parity bits, not all of the bits can be
-                  used to transfer data.
-                </Text>
-                <Text>
-                  Our current efficiency is: <strong>{dataBitSize}</strong> data
-                  bits / <strong>{redundantBitsSize}</strong> parity bits ={' '}
-                  <strong>{efficiency}%</strong>
-                </Text>
-              </Box>
-
-              <Box>
-                <Heading size="md" mb="sm">
-                  Details
-                </Heading>
-                <SimpleGrid columns={2}>
-                  <Text>Hamming Code Size</Text>
-                  <Text fontWeight="bold">
-                    {hammingCodeSize.toString().padStart(padLength, '0')}
-                  </Text>
-                  <Text>Parity Bit Size</Text>
-                  <Text fontWeight="bold">
-                    {redundantBitsSize.toString().padStart(padLength, '0')}
-                  </Text>
-                  <Text>Data Bit Size</Text>
-                  <Text fontWeight="bold">
-                    {dataBitSize.toString().padStart(padLength, '0')}
-                  </Text>
-                  <Text>Parity</Text>
-                  <Text fontWeight="bold">
-                    {parity.toString().padStart(padLength, '0')}
-                  </Text>
-                </SimpleGrid>
-              </Box>
-            </SimpleGrid>
+            <MetaGrid
+              parity={parity}
+              efficiency={efficiency}
+              dataBitSize={dataBitSize}
+              hammingCodeSize={hammingCodeSize}
+              redundantBitsSize={redundantBitsSize}
+            />
           ) : null}
 
           {dataBits.length ? (
@@ -116,28 +81,9 @@ function App() {
 
           {bitsArray.length ? (
             <Box as="section" px="3">
-              <Heading size="lg" mb="2">
-                Hamming Code ({parity})
+              <Heading size="lg" mb="3">
+                Hamming Code <small>({parity})</small>
               </Heading>
-
-              {bitsArray.length < 20 ? (
-                <Box d="flex" flexWrap="wrap" mb="2">
-                  {bitsArray.map((bit, bitIndex) => {
-                    return (
-                      <Button
-                        m="1px"
-                        size="xs"
-                        key={bitIndex}
-                        colorScheme="blue"
-                        borderRadius="none"
-                        variant={isPowerOf2(bitIndex + 1) ? 'solid' : 'outline'}
-                      >
-                        {bit}
-                      </Button>
-                    );
-                  })}
-                </Box>
-              ) : null}
 
               <BitsArray
                 bitsArray={bitsArray}
