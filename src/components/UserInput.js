@@ -85,8 +85,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
       </FormControl>
       <FormControl display="flex" alignItems="center" mb="2">
         <FormLabel htmlFor="parity-selector" mb="0">
-          Toggle this to use <strong>{isOddParity ? 'even' : 'odd'}</strong>{' '}
-          parity.
+          Would you like to use <strong>Odd Parity</strong> ?
         </FormLabel>
         <Switch
           id="parity-selector"
