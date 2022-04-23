@@ -7,7 +7,6 @@ import {
   Heading,
   SimpleGrid,
   ChakraProvider,
-  Divider,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import Header from './components/Header';
@@ -26,6 +25,7 @@ function App() {
     dataBitSize,
     getHammingCode,
     hammingCodeSize,
+    parityPositions,
     redundantBitsSize,
   } = useHammingCode();
 
@@ -50,28 +50,18 @@ function App() {
           {bitsArray.length ? (
             <SimpleGrid columns={[1, 2]} mb="3" px="3">
               <Box mb="2">
-                <Box pb="2">
-                  <Heading size="md" mb="sm">
-                    Efficiency
-                  </Heading>
-                  <Text>
-                    Since we have some parity bits, not all of the bits can be
-                    used to transfer data.
-                  </Text>
-                  <Text>
-                    Our current efficiency is: <strong>{dataBitSize}</strong>{' '}
-                    data bits / <strong>{redundantBitsSize}</strong> parity bits
-                    = <strong>{efficiency}%</strong>
-                  </Text>
-                </Box>
-
-                <Divider w="90%" />
-
-                <Box pt="3">
-                  <Text fontWeight="bold">
-                    Hover or click over a parity bit{' '}
-                  </Text>
-                </Box>
+                <Heading size="md" mb="sm">
+                  Efficiency
+                </Heading>
+                <Text>
+                  Since we have some parity bits, not all of the bits can be
+                  used to transfer data.
+                </Text>
+                <Text>
+                  Our current efficiency is: <strong>{dataBitSize}</strong> data
+                  bits / <strong>{redundantBitsSize}</strong> parity bits ={' '}
+                  <strong>{efficiency}%</strong>
+                </Text>
               </Box>
 
               <Box>
@@ -149,7 +139,10 @@ function App() {
                 </Box>
               ) : null}
 
-              <BitsArray bitsArray={bitsArray} />
+              <BitsArray
+                bitsArray={bitsArray}
+                parityPositions={parityPositions}
+              />
             </Box>
           ) : null}
         </SimpleGrid>

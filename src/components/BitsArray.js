@@ -1,7 +1,31 @@
 import { SimpleGrid, Box, Text, VStack } from '@chakra-ui/react';
 import isPowerOf2 from '../helpers/isPowerOfTwo';
+import { useState, useMemo } from 'react';
 
-const BitsArray = ({ bitsArray = [] }) => {
+const BitsArray = ({ bitsArray = [], parityPositions }) => {
+  const [hoveredParityBitIndex, setHoveredParityBitIndex] = useState(-1);
+
+  const associatedDataBits = useMemo(() => {
+    if (hoveredParityBitIndex !== -1) {
+      const parityBit = parityPositions.find(
+        p => p.parityIndex === hoveredParityBitIndex
+      );
+
+      const dataBitsIndexes = parityBit.associatedDataBits;
+
+      return [...dataBitsIndexes];
+    }
+    return [];
+  }, [hoveredParityBitIndex, parityPositions]);
+
+  const onMouseEnter = (bitIndex, isParityBit) => {
+    if (isParityBit) {
+      setHoveredParityBitIndex(bitIndex);
+    } else {
+      return;
+    }
+  };
+
   return (
     <SimpleGrid spacing={1} columns={[4, 6, 8, 12]} size="lg">
       {bitsArray.map((bit, index) => {
@@ -16,6 +40,14 @@ const BitsArray = ({ bitsArray = [] }) => {
             borderColor="teal"
             justifyContent="center"
             bgColor={isParityBit ? 'teal' : 'transparent'}
+            onMouseLeave={() => setHoveredParityBitIndex(-1)}
+            onMouseEnter={() => onMouseEnter(bitIndex, isParityBit)}
+            opacity={
+              hoveredParityBitIndex === -1 ||
+              associatedDataBits.includes(bitIndex)
+                ? '1'
+                : '0.2'
+            }
           >
             <VStack spacing={0.1}>
               <Text fontSize="xl" fontWeight="bold">
