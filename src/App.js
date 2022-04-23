@@ -5,12 +5,14 @@ import {
   Link,
   theme,
   HStack,
+  Button,
   Heading,
   Container,
   IconButton,
   SimpleGrid,
   ChakraProvider,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { APP_NAME } from './configs/constants';
 import UserInput from './components/UserInput';
@@ -25,8 +27,11 @@ function App() {
     isLoading,
   } = useHammingCode();
 
+  const [dataBits, setDataBits] = useState([]);
+
   const onSubmit = (input, flag) => {
     const bits = input.split('').map(bit => parseInt(bit));
+    setDataBits(() => bits);
     getHammingCode(bits, flag);
   };
   return (
@@ -73,9 +78,33 @@ function App() {
       {/* Main App */}
       <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
         <SimpleGrid columns={1}>
-          <Box as="section" p="3">
+          <Box as="section" p="3" mb="3">
             <UserInput onSubmit={onSubmit} isLoading={isLoading} />
           </Box>
+
+          {dataBits.length ? (
+            <Box as="section" px="2">
+              <Heading fontSize="md" mb="2">
+                Data Bits
+              </Heading>
+
+              <Box d="flex" flexWrap="wrap">
+                {dataBits.map((bit, bitIndex) => {
+                  return (
+                    <Button
+                      m="1px"
+                      size="xs"
+                      key={bitIndex}
+                      colorScheme="cyan"
+                      borderRadius="none"
+                    >
+                      {bit}
+                    </Button>
+                  );
+                })}
+              </Box>
+            </Box>
+          ) : null}
           {bitsArray.length ? (
             <Box as="section" p="3">
               <Heading size="lg" mb="3">
