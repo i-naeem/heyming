@@ -15,7 +15,7 @@ const encode = async (data_bits, isOdd = false) => {
     if (isPowerOf2(codeIndex)) {
       // Since array starts at 0 the parity bit value would be previous one.
       hammingCode[codeIndex - 1] = 'P';
-      parityPositions.push(codeIndex - 1);
+      parityPositions.push({ parityIndex: codeIndex, associatedDataBits: [] });
     }
   });
 
@@ -42,6 +42,12 @@ const encode = async (data_bits, isOdd = false) => {
       if (parityPosition & dataBitIndex) {
         // Since array starts at zero so our data bit would always be the previous one and add it the ones
         onesCount += hammingCode[dataBitIndex - 1];
+
+        let parity = parityPositions.find(
+          parity => parity.parityIndex === parityPosition
+        );
+
+        parity.associatedDataBits.push(dataBitIndex);
       }
     }
 
@@ -58,10 +64,15 @@ const encode = async (data_bits, isOdd = false) => {
 
   return {
     code: [...hammingCode].reverse().join(''),
+    dataBitSize: dataLength,
     codeArray: hammingCode,
     redundantBitsSize,
     hammingCodeSize,
+    efficiency: ((100 * dataLength) / hammingCodeSize).toFixed(2),
+
     parityPositions,
+
+    parity: isOdd ? 'Odd' : 'Even',
   };
 };
 

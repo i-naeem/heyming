@@ -8,8 +8,17 @@ const STATES = Object.freeze({
   idle: 'idle',
 });
 
+const defaultHammingCode = {
+  code: '',
+  parity: '',
+  codeArray: [],
+  dataBitSize: 0,
+  hammingCodeSize: 0,
+  parityPositions: [],
+  redundantBitsSize: 0,
+};
 const useHammingCode = () => {
-  const [hammingCode, setHammingCode] = useState([]);
+  const [hammingCode, setHammingCode] = useState(defaultHammingCode);
   const [status, setStatus] = useState(STATES.idle);
   const [error, setError] = useState(null);
 
@@ -18,7 +27,7 @@ const useHammingCode = () => {
       setStatus(() => STATES.loading);
       const response = await encode(bitsArray, isOdd);
       setStatus(() => STATES.success);
-      setHammingCode(() => response.codeArray);
+      setHammingCode(() => response);
     } catch (error) {
       setError(() => error.message);
       setStatus(() => STATES.error);
@@ -29,7 +38,13 @@ const useHammingCode = () => {
   return {
     error,
     status,
-    hammingCode,
+    code: hammingCode.code,
+    parity: hammingCode.parity,
+    bitsArray: hammingCode.codeArray,
+    dataBitSize: hammingCode.dataBitSize,
+    parityPositions: hammingCode.parityPositions,
+    hammingCodeSize: hammingCode.hammingCodeSize,
+    redundantBitsSize: hammingCode.redundantBitsSize,
     isLoading: status === STATES.loading,
     getHammingCode,
   };

@@ -15,11 +15,7 @@ import BitsArray from './components/BitsArray';
 import useHammingCode from './services/HammingCode/useHammingCode';
 
 function App() {
-  const {
-    hammingCode: bitsArray,
-    getHammingCode,
-    isLoading,
-  } = useHammingCode();
+  const { bitsArray, getHammingCode, isLoading } = useHammingCode();
 
   const [dataBits, setDataBits] = useState([]);
 
@@ -37,7 +33,6 @@ function App() {
           <Box as="section" p="3" mb="3">
             <UserInput onSubmit={onSubmit} isLoading={isLoading} />
           </Box>
-
           {dataBits.length ? (
             <Box as="section" px="2">
               <Heading fontSize="md" mb="2">
@@ -61,7 +56,6 @@ function App() {
               </Box>
             </Box>
           ) : null}
-
           {bitsArray.length ? (
             <Box as="section" p="3">
               <Heading size="lg" mb="3">
