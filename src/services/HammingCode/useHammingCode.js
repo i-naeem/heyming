@@ -8,16 +8,22 @@ const STATES = Object.freeze({
   idle: 'idle',
 });
 
+// default values so our code doesn't break at start-up
 const defaultHammingCode = {
-  code: '',
-  parity: '',
-  codeArray: [],
-  dataBitSize: 0,
-  efficiency: '0',
-  hammingCodeSize: 0,
-  parityPositions: [],
-  redundantBitsSize: 0,
+  code: '1100001',
+  parity: 'Even',
+  dataBitSize: 4,
+  hammingCodeSize: 7,
+  efficiency: '57.14',
+  redundantBitsSize: 3,
+  codeArray: [1, 0, 0, 0, 0, 1, 1],
+  parityPositions: [
+    { parityIndex: 1, associatedDataBits: [1, 3, 5, 7] },
+    { parityIndex: 2, associatedDataBits: [2, 3, 6, 7] },
+    { parityIndex: 4, associatedDataBits: [4, 5, 6, 7] },
+  ],
 };
+
 const useHammingCode = () => {
   const [hammingCode, setHammingCode] = useState(defaultHammingCode);
   const [status, setStatus] = useState(STATES.idle);

@@ -45,52 +45,46 @@ function App() {
             <UserInput onSubmit={onSubmit} isLoading={isLoading} />
           </Box>
 
-          {bitsArray.length ? (
-            <MetaGrid
-              parity={parity}
-              efficiency={efficiency}
-              dataBitSize={dataBitSize}
-              hammingCodeSize={hammingCodeSize}
-              redundantBitsSize={redundantBitsSize}
+          <MetaGrid
+            parity={parity}
+            efficiency={efficiency}
+            dataBitSize={dataBitSize}
+            hammingCodeSize={hammingCodeSize}
+            redundantBitsSize={redundantBitsSize}
+          />
+
+          <Box as="section" px="2" mb="2">
+            <Heading size="md" mb="2">
+              Data Bits
+            </Heading>
+
+            <Box d="flex" flexWrap="wrap">
+              {dataBits.map((bit, bitIndex) => {
+                return (
+                  <Button
+                    m="1px"
+                    size="xs"
+                    key={bitIndex}
+                    colorScheme="cyan"
+                    borderRadius="none"
+                  >
+                    {bit}
+                  </Button>
+                );
+              })}
+            </Box>
+          </Box>
+
+          <Box as="section" px="3">
+            <Heading size="lg" mb="3">
+              Hamming Code <small>({parity})</small>
+            </Heading>
+
+            <BitsArray
+              bitsArray={bitsArray}
+              parityPositions={parityPositions}
             />
-          ) : null}
-
-          {dataBits.length ? (
-            <Box as="section" px="2" mb="2">
-              <Heading size="md" mb="2">
-                Data Bits
-              </Heading>
-
-              <Box d="flex" flexWrap="wrap">
-                {dataBits.map((bit, bitIndex) => {
-                  return (
-                    <Button
-                      m="1px"
-                      size="xs"
-                      key={bitIndex}
-                      colorScheme="cyan"
-                      borderRadius="none"
-                    >
-                      {bit}
-                    </Button>
-                  );
-                })}
-              </Box>
-            </Box>
-          ) : null}
-
-          {bitsArray.length ? (
-            <Box as="section" px="3">
-              <Heading size="lg" mb="3">
-                Hamming Code <small>({parity})</small>
-              </Heading>
-
-              <BitsArray
-                bitsArray={bitsArray}
-                parityPositions={parityPositions}
-              />
-            </Box>
-          ) : null}
+          </Box>
         </SimpleGrid>
       </Box>
 

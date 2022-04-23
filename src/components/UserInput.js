@@ -106,8 +106,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
           type="submit"
           colorScheme="green"
           isLoading={isLoading}
-          loadingText="Generating"
-          disabled={isInvalid || userData === ''}
+          disabled={isInvalid || userData === '' || isLoading}
         >
           Generate
         </Button>
