@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/heyming/static/js/main.fabdf1b3.js",
+    "main.js": "/heyming/static/js/main.45cb303b.js",
     "index.html": "/heyming/index.html",
-    "main.fabdf1b3.js.map": "/heyming/static/js/main.fabdf1b3.js.map"
+    "main.45cb303b.js.map": "/heyming/static/js/main.45cb303b.js.map"
   },
   "entrypoints": [
-    "static/js/main.fabdf1b3.js"
+    "static/js/main.45cb303b.js"
   ]
 }
