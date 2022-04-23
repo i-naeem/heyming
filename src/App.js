@@ -6,6 +6,7 @@ import {
   Heading,
   SimpleGrid,
   ChakraProvider,
+  Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import Header from './components/Header';
@@ -15,7 +16,15 @@ import BitsArray from './components/BitsArray';
 import useHammingCode from './services/HammingCode/useHammingCode';
 
 function App() {
-  const { bitsArray, getHammingCode, isLoading } = useHammingCode();
+  const {
+    parity,
+    bitsArray,
+    isLoading,
+    efficiency,
+    dataBitSize,
+    getHammingCode,
+    redundantBitsSize,
+  } = useHammingCode();
 
   const [dataBits, setDataBits] = useState([]);
 
@@ -33,8 +42,9 @@ function App() {
           <Box as="section" p="3" mb="3">
             <UserInput onSubmit={onSubmit} isLoading={isLoading} />
           </Box>
+
           {dataBits.length ? (
-            <Box as="section" px="2">
+            <Box as="section" px="2" mb="3">
               <Heading fontSize="md" mb="2">
                 Data Bits
               </Heading>
@@ -58,8 +68,21 @@ function App() {
           ) : null}
           {bitsArray.length ? (
             <Box as="section" p="3">
+              <SimpleGrid columns={[1, 2]} mb="3">
+                <Box mb="2">
+                  <Heading size="md">Efficiency</Heading>
+                  <Text>
+                    Since we have some parity bits, not all of the bits can be
+                    used to transfer data. Our current efficiency is:
+                  </Text>
+                  <Text>
+                    {dataBitSize} data bits / {redundantBitsSize} ={' '}
+                    <strong>{efficiency}%</strong>
+                  </Text>
+                </Box>
+              </SimpleGrid>
               <Heading size="lg" mb="3">
-                Hamming Code
+                Hamming Code ({parity})
               </Heading>
 
               <BitsArray bitsArray={bitsArray} />
