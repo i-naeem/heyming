@@ -24,7 +24,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
   const onInputChange = event => {
     let value = event.target.value;
 
-    if (value !== '' && value.search(/[^10]+/g) > -1) {
+    if (value !== '' && value.search(/[^10\s]+/g) > -1) {
       setInvalid(true);
     } else {
       setInvalid(false);
@@ -37,7 +37,8 @@ const UserInput = ({ onSubmit, isLoading }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSubmit(userData, isOddParity);
+    const dataBits = userData.replace(/\s/g, '');
+    onSubmit(dataBits, isOddParity);
   };
 
   const handleRandomButtonClick = () => {
