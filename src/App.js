@@ -7,6 +7,7 @@ import {
   Heading,
   SimpleGrid,
   ChakraProvider,
+  Divider,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import Header from './components/Header';
@@ -24,10 +25,12 @@ function App() {
     efficiency,
     dataBitSize,
     getHammingCode,
+    hammingCodeSize,
     redundantBitsSize,
   } = useHammingCode();
 
   const [dataBits, setDataBits] = useState([]);
+  const padLength = hammingCodeSize.toString().length;
 
   const onSubmit = (input, flag) => {
     const bits = input.split('').map(bit => parseInt(bit));
@@ -47,22 +50,59 @@ function App() {
           {bitsArray.length ? (
             <SimpleGrid columns={[1, 2]} mb="3" px="3">
               <Box mb="2">
-                <Heading size="md">Efficiency</Heading>
-                <Text>
-                  Since we have some parity bits, not all of the bits can be
-                  used to transfer data. Our current efficiency is:
-                </Text>
-                <Text>
-                  {dataBitSize} data bits / {redundantBitsSize} ={' '}
-                  <strong>{efficiency}%</strong>
-                </Text>
+                <Box pb="2">
+                  <Heading size="md" mb="sm">
+                    Efficiency
+                  </Heading>
+                  <Text>
+                    Since we have some parity bits, not all of the bits can be
+                    used to transfer data.
+                  </Text>
+                  <Text>
+                    Our current efficiency is: <strong>{dataBitSize}</strong>{' '}
+                    data bits / <strong>{redundantBitsSize}</strong> parity bits
+                    = <strong>{efficiency}%</strong>
+                  </Text>
+                </Box>
+
+                <Divider w="90%" />
+
+                <Box pt="3">
+                  <Text fontWeight="bold">
+                    Hover or click over a parity bit{' '}
+                  </Text>
+                </Box>
+              </Box>
+
+              <Box>
+                <Heading size="md" mb="sm">
+                  Details
+                </Heading>
+                <SimpleGrid columns={2}>
+                  <Text>Hamming Code Size</Text>
+                  <Text fontWeight="bold">
+                    {hammingCodeSize.toString().padStart(padLength, '0')}
+                  </Text>
+                  <Text>Parity Bit Size</Text>
+                  <Text fontWeight="bold">
+                    {redundantBitsSize.toString().padStart(padLength, '0')}
+                  </Text>
+                  <Text>Data Bit Size</Text>
+                  <Text fontWeight="bold">
+                    {dataBitSize.toString().padStart(padLength, '0')}
+                  </Text>
+                  <Text>Parity</Text>
+                  <Text fontWeight="bold">
+                    {parity.toString().padStart(padLength, '0')}
+                  </Text>
+                </SimpleGrid>
               </Box>
             </SimpleGrid>
           ) : null}
 
           {dataBits.length ? (
             <Box as="section" px="2" mb="2">
-              <Heading fontSize="md" mb="2">
+              <Heading size="md" mb="2">
                 Data Bits
               </Heading>
 
