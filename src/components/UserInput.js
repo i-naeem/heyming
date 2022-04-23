@@ -1,5 +1,5 @@
 import {
-  Box,
+  Icon,
   Input,
   Button,
   HStack,
@@ -7,12 +7,13 @@ import {
   FormLabel,
   useBoolean,
   IconButton,
+  InputGroup,
   FormControl,
   useMediaQuery,
-  FormHelperText,
+  InputRightElement,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { FaRandom } from 'react-icons/fa';
+import { FaRandom, FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import getRandomBits from '../helpers/getRandomBits';
 
 const UserInput = ({ onSubmit, isLoading }) => {
@@ -34,6 +35,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
   };
 
   const isInvalid = invalid && userData !== '';
+  const size = isLargerThan900 ? 'md' : 'sm';
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -47,43 +49,63 @@ const UserInput = ({ onSubmit, isLoading }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <FormControl mb="2">
-        <FormLabel htmlFor="user-input">Enter your message</FormLabel>
-
-        <HStack>
-          <Input
+      <HStack mb="2">
+        {isLargerThan900 ? (
+          <Button
+            px="6"
             size="md"
+            colorScheme="blue"
+            leftIcon={<FaRandom />}
+            onClick={handleRandomButtonClick}
+          >
+            Generate Random Bits
+          </Button>
+        ) : (
+          <IconButton
+            size={size}
+            colorScheme="blue"
+            icon={<FaRandom />}
+            aria-label="Generate Random Bits"
+            onClick={handleRandomButtonClick}
+          />
+        )}
+
+        <InputGroup size={size}>
+          <Input
             variant="filled"
             id="user-input"
             value={userData}
-            letterSpacing={[2, 5]}
-            placeholder="110111"
             isInvalid={isInvalid}
+            letterSpacing={[2, 5]}
             onChange={onInputChange}
+            _placeholder={{ letterSpacing: 'normal' }}
+            placeholder="Your input must be in binary format (110111)"
           />
-
-          {isLargerThan900 ? (
-            <Button
-              px="6"
-              size="md"
-              colorScheme="blue"
-              leftIcon={<FaRandom />}
-              onClick={handleRandomButtonClick}
-            >
-              Generate Random Bits
-            </Button>
-          ) : (
-            <IconButton
-              colorScheme="blue"
-              icon={<FaRandom />}
-              aria-label="Generate Random Bits"
-              onClick={handleRandomButtonClick}
+          {userData !== '' ? (
+            <InputRightElement
+              children={
+                <Icon
+                  as={isInvalid ? FaExclamationCircle : FaCheck}
+                  color={isInvalid ? 'red.500' : 'green.500'}
+                />
+              }
             />
-          )}
-        </HStack>
-        <FormHelperText>Your input must be in binary format.</FormHelperText>
-      </FormControl>
-      <FormControl display="flex" alignItems="center" mb="2">
+          ) : null}
+        </InputGroup>
+
+        <Button
+          size={size}
+          type="submit"
+          colorScheme="green"
+          isLoading={isLoading}
+          loadingText="Generating"
+          disabled={isInvalid || userData === ''}
+        >
+          Generate
+        </Button>
+      </HStack>
+
+      <FormControl display="flex" alignItems="center" mb="2" fontSize={size}>
         <FormLabel htmlFor="parity-selector" mb="0">
           Would you like to use <strong>Odd Parity</strong> ?
         </FormLabel>
@@ -93,18 +115,6 @@ const UserInput = ({ onSubmit, isLoading }) => {
           onChange={handler.toggle}
         />
       </FormControl>
-
-      <Box d="flex" justifyContent={['end', 'flex-start']}>
-        <Button
-          type="submit"
-          colorScheme="green"
-          disabled={isInvalid || userData === ''}
-          isLoading={isLoading}
-          loadingText="Generating"
-        >
-          Generate
-        </Button>
-      </Box>
     </form>
   );
 };
