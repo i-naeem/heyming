@@ -10,7 +10,7 @@
 Heyming is a <strong> Hamming Code <strong> encode which encodes given data in hamming code.
 <br />
 
-<a href="#">View Demo</a>
+<a href="https://i-naeem.github.io/heyming">View Demo</a>
 ·
 <a href="https://github.com/i-naeem/heyming/issues">Report Bug</a>
 ·
