@@ -33,12 +33,6 @@ Heyming is a hamming code encoder and decoder. It can encode data bits to hammin
 - Decodes hamming code.
 - Detect single bit errors in hamming code.
 
-### Limitation
-
-- Encodes data bits (4) to hamming code.
-- Decodes hamming code (7).
-- Detect single bit errors in hamming code.
-
 ### Built With
 
 - [React.js](https://reactjs.org/)
