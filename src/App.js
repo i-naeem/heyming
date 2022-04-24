@@ -3,8 +3,8 @@ import { Box, ChakraProvider, theme } from '@chakra-ui/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Encoder from './routes/Encoder';
-import React from 'react';
 import Decoder from './routes/Decoder';
+import React from 'react';
 
 function App() {
   return (
