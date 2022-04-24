@@ -15,6 +15,7 @@ import useInput from '../hooks/useInput';
 import { useState, useEffect } from 'react';
 import { FaRandom, FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import getRandomBits from '../helpers/getRandomBits';
+import PropTypes from 'prop-types';
 
 const UserInput = ({ onSubmit, isLoading }) => {
   const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
@@ -112,4 +113,8 @@ const UserInput = ({ onSubmit, isLoading }) => {
   );
 };
 
+UserInput.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
+};
 export default UserInput;
