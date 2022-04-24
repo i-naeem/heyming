@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Box, ChakraProvider, theme } from '@chakra-ui/react';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -8,7 +8,7 @@ import Decoder from './routes/Decoder';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ChakraProvider theme={theme}>
         <Header />
         <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
@@ -24,7 +24,7 @@ function App() {
         </Box>
         <Footer />
       </ChakraProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
