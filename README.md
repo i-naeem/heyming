@@ -7,7 +7,7 @@
 </a>
 <h3 align="center">Heyming</h3>
 <p align="center">
-Heyming is a <strong> Hamming Code <strong> encode which encodes given data in hamming code.
+Heyming is a <strong> Hamming Code <strong> encode which encodes given data in hamming code and decodes hamming code.
 <br />
 
 <a href="https://i-naeem.github.io/heyming">View Demo</a>
@@ -25,12 +25,25 @@ Heyming is a <strong> Hamming Code <strong> encode which encodes given data in h
 
 ![Heyming Demo Picture](demo.jpeg)
 
-Heyming is a hamming code encoder . It encodes given bits of data and show the hamming code of that data. It can encode any size of data bit. It helps to understand hamming code better.
+Heyming is a hamming code encoder and decoder. It can encode data bits to hamming code. It also decodes hamming code and check for single bit errors.
+
+### Features
+
+- Encodes data bits to hamming code.
+- Decodes hamming code.
+- Detect single bit errors in hamming code.
+
+### Limitation
+
+- Encodes data bits (4) to hamming code.
+- Decodes hamming code (7).
+- Detect single bit errors in hamming code.
 
 ### Built With
 
 - [React.js](https://reactjs.org/)
 - [Chakra Ui](https://chakra-ui.com/)
+- [Font Awesome](https://fontawesome.com/icons)
 
 ### What I Learned ?
 
