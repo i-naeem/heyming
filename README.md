@@ -75,9 +75,9 @@ To run this project you would require Node v17 or above and yarn installed on yo
 ## Roadmap
 
 - :heavy_check_mark: Add a README
-- :heavy_check_mark: Add dark mode.
 - :heavy_check_mark: Add Decoder.
-- :black_large_square: Add Meta Information.
+- :heavy_check_mark: Add dark mode.
+- :heavy_check_mark: Add Meta Information.
 - :black_large_square: Add left to right or right to left for decoder.
 
 <!-- CONTRIBUTING -->
