@@ -1,5 +1,5 @@
 import useHammingCode from '../services/HammingCode/useHammingCode';
-import { Heading, Button, Box, SimpleGrid } from '@chakra-ui/react';
+import { Heading, Button, Box, SimpleGrid, Text } from '@chakra-ui/react';
 import HammingCodeBits from '../components/HammingCodeBits';
 import UserInput from '../components/UserInput';
 import MetaGrid from '../components/MetaGrid';
@@ -16,7 +16,7 @@ const Encoder = props => {
     hammingCodeSize,
     parityPositions,
     redundantBitsSize,
-  } = useHammingCode();
+  } = useHammingCode(4);
 
   const [dataBits, setDataBits] = useState([]);
 
@@ -27,9 +27,20 @@ const Encoder = props => {
   };
   return (
     <Box height="100%">
+      <Box p="3">
+        <Heading size="lg" mb="1" align="center">
+          Hamming Code Encoder
+        </Heading>
+        <Text align="center">
+          <strong>Hamming Code Encoder</strong> encodes the given data bits. The
+          size of the data bits should be <strong>4</strong> and all the bit
+          must be in binary format.
+        </Text>
+      </Box>
+
       <SimpleGrid columns={1}>
         <Box as="section" p="3" mb="3">
-          <UserInput onSubmit={onSubmit} isLoading={isLoading} />
+          <UserInput onSubmit={onSubmit} isLoading={isLoading} minLength={4} />
         </Box>
 
         <MetaGrid

@@ -17,10 +17,11 @@ import { FaRandom, FaCheck, FaExclamationCircle } from 'react-icons/fa';
 import getRandomBits from '../helpers/getRandomBits';
 import PropTypes from 'prop-types';
 
-const UserInput = ({ onSubmit, isLoading }) => {
+const UserInput = ({ onSubmit, isLoading, minLength = 4 }) => {
   const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
   const [isOddParity, setOddParity] = useState(false);
-  const { isInvalid, userData, setUserData, onInputChange } = useInput();
+  const { isInvalid, userData, setUserData, onInputChange } =
+    useInput(minLength);
 
   const size = 'md';
 
@@ -29,7 +30,7 @@ const UserInput = ({ onSubmit, isLoading }) => {
   const handleRandomButtonClick = () => setUserData(getRandomBits());
 
   useEffect(() => {
-    const randomBits = getRandomBits(4, 16);
+    const randomBits = getRandomBits(minLength, 16);
     setUserData(randomBits);
     onSubmit(randomBits);
 
@@ -116,5 +117,6 @@ const UserInput = ({ onSubmit, isLoading }) => {
 UserInput.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
+  minLength: PropTypes.number,
 };
 export default UserInput;

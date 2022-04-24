@@ -8,6 +8,7 @@ import {
   Alert,
   Icon,
   Box,
+  Text,
 } from '@chakra-ui/react';
 import HammingCodeBits from '../components/HammingCodeBits';
 import { FaExclamationCircle } from 'react-icons/fa';
@@ -38,8 +39,21 @@ const Decoder = props => {
   return (
     <Box height="100%">
       <SimpleGrid columns={1}>
+        <Box p="3">
+          <Heading size="lg" mb="1" align="center">
+            Hamming Code Decoder
+          </Heading>
+          <Text align="center">
+            <strong>Hamming Code Decoder</strong> decodes the given hamming
+            bits. The size of the hamming bits should be <strong>4</strong> and
+            all the bit must be in binary format. It can not detect two bits
+            array so if your input contains 2 bit or more than 2 bit error, the
+            result would be unexpected.
+          </Text>
+        </Box>
+
         <Box as="section" p="3">
-          <UserInput onSubmit={onSubmit} isLoading={isLoading} />
+          <UserInput onSubmit={onSubmit} isLoading={isLoading} minLength={7} />
         </Box>
 
         {isError ? (

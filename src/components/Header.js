@@ -15,9 +15,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
 const Header = props => {
-  const [isLargerThan900] = useMediaQuery(`(min-width: 900px)`);
+  const [isLargerThan600] = useMediaQuery(`(min-width: 600px)`);
 
-  const size = isLargerThan900 ? 'md' : 'sm';
+  const size = isLargerThan600 ? 'md' : 'xs';
   return (
     <Box>
       <Box
@@ -34,7 +34,7 @@ const Header = props => {
               as={Link}
               bgClip="text"
               href="/heyming"
-              size={isLargerThan900 ? 'lg' : 'xl'}
+              size={isLargerThan600 ? 'xl' : 'md'}
               bgGradient="linear(to-r, teal.500, green.500)"
             >
               {APP_NAME}
