@@ -5,22 +5,22 @@ const MetaGrid = ({
   parity,
   efficiency,
   dataBitSize,
-  redundantBitsSize,
   hammingCodeSize,
+  redundantBitsSize,
 }) => {
   const padLength = hammingCodeSize.toString().length;
   return (
-    <SimpleGrid columns={[1, 2]} mb="3" px="3">
-      <Box mb="2">
+    <SimpleGrid columns={[1, 2]} spacing={3} mb="3" px="3">
+      <Box>
         <Heading size="md" mb="sm">
           Efficiency
         </Heading>
         <Text>
           Since we have some parity bits, not all of the bits can be used to
-          transfer data.
+          transfer data. Our current efficiency is:
         </Text>
         <Text>
-          Our current efficiency is: <strong>{dataBitSize}</strong> data bits /{' '}
+          <strong>{dataBitSize}</strong> data bits /{' '}
           <strong>{redundantBitsSize}</strong> parity bits ={' '}
           <strong>{efficiency}%</strong>
         </Text>

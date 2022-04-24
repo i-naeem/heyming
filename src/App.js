@@ -53,7 +53,7 @@ function App() {
             redundantBitsSize={redundantBitsSize}
           />
 
-          <Box as="section" px="2" mb="2">
+          <Box as="section" px="2" mb="3">
             <Heading size="md" mb="2">
               Data Bits
             </Heading>

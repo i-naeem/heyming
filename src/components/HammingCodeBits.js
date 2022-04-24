@@ -1,12 +1,12 @@
 import {
   Box,
-  ButtonGroup,
-  Heading,
+  Text,
   HStack,
+  Heading,
   IconButton,
   SimpleGrid,
-  Text,
   useBoolean,
+  ButtonGroup,
   useMediaQuery,
   useOutsideClick,
 } from '@chakra-ui/react';
@@ -53,7 +53,7 @@ const HammingCodeBits = ({
 
   return (
     <Box {...rest}>
-      <Box mb="2">
+      <Box mb="3">
         <HStack justify="space-between" align="center">
           <Heading size={isLargerThan900 ? 'lg' : 'md'}>
             Hamming Code <small>({parity})</small>
