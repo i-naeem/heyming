@@ -52,7 +52,7 @@ const HammingCodeBits = ({
   };
 
   return (
-    <Box {...rest}>
+    <Box {...rest} ref={ref}>
       <Box mb="3">
         <HStack justify="space-between" align="center">
           <Heading size={isLargerThan900 ? 'lg' : 'md'}>
