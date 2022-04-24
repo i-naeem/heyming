@@ -1,13 +1,15 @@
 import {
   Box,
+  ButtonGroup,
   Heading,
   HStack,
   IconButton,
   SimpleGrid,
   useBoolean,
+  useMediaQuery,
 } from '@chakra-ui/react';
 import isPowerOf2 from '../helpers/isPowerOfTwo';
-import { FaExpand } from 'react-icons/fa';
+import { FaCompress, FaExpand } from 'react-icons/fa';
 import { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import Bit from './Bit';
@@ -19,6 +21,7 @@ const HammingCodeBits = ({
   ...rest
 }) => {
   const [hoveredParityBitIndex, setHoveredParityBitIndex] = useState(-1);
+  const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
   const [isCompact, handler] = useBoolean(false);
 
   const associatedDataBits = useMemo(() => {
@@ -41,11 +44,25 @@ const HammingCodeBits = ({
 
   return (
     <Box {...rest}>
-      <HStack justify="space-between">
-        <Heading size="lg" mb="3">
+      <HStack justify="space-between" mb="2" align="center">
+        <Heading size={isLargerThan900 ? 'lg' : 'md'}>
           Hamming Code <small>({parity})</small>
         </Heading>
-        <IconButton onClick={handler.toggle} icon={<FaExpand />} />
+
+        <ButtonGroup size={isLargerThan900 ? 'sm' : 'xs'} colorScheme="blue">
+          <IconButton
+            shadow="none"
+            variant={isCompact ? 'ghost' : 'solid'}
+            onClick={handler.off}
+            icon={<FaExpand />}
+          />
+          <IconButton
+            shadow="none"
+            onClick={handler.on}
+            variant={isCompact ? 'solid' : 'ghost'}
+            icon={<FaCompress />}
+          />
+        </ButtonGroup>
       </HStack>
 
       <SimpleGrid
