@@ -12,7 +12,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MetaGrid from './components/MetaGrid';
 import UserInput from './components/UserInput';
-import BitsArray from './components/BitsArray';
+import HammingCodeBits from './components/HammingCodeBits';
 import useHammingCode from './services/HammingCode/useHammingCode';
 
 function App() {
@@ -75,16 +75,13 @@ function App() {
             </Box>
           </Box>
 
-          <Box as="section" px="3">
-            <Heading size="lg" mb="3">
-              Hamming Code <small>({parity})</small>
-            </Heading>
-
-            <BitsArray
-              bitsArray={bitsArray}
-              parityPositions={parityPositions}
-            />
-          </Box>
+          <HammingCodeBits
+            px="3"
+            as="section"
+            parity={parity}
+            bitsArray={bitsArray}
+            parityPositions={parityPositions}
+          />
         </SimpleGrid>
       </Box>
 
