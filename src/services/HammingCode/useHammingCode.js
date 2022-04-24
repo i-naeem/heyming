@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import decode from './decode';
 import encode from './encode';
 
 const STATES = Object.freeze({
@@ -11,9 +12,12 @@ const STATES = Object.freeze({
 // default values so our code doesn't break at start-up
 const defaultHammingCode = {
   code: '1100001',
+  errorIndex: -1,
+  isError: false,
   parity: 'Even',
   dataBitSize: 4,
   hammingCodeSize: 7,
+  dataBits: [1, 1, 0, 0],
   efficiency: '57.14',
   redundantBitsSize: 3,
   codeArray: [1, 0, 0, 0, 0, 1, 1],
@@ -42,19 +46,37 @@ const useHammingCode = () => {
     }
   };
 
+  const getDataBits = async (bitsArray, isOdd) => {
+    try {
+      setStatus(() => STATES.loading);
+      const response = await decode(bitsArray, isOdd);
+      setStatus(() => STATES.success);
+      setHammingCode(() => response);
+    } catch (error) {
+      setError(() => error.message);
+      setStatus(() => STATES.error);
+      setHammingCode([]);
+    }
+  };
+
   return {
     error,
     status,
     code: hammingCode.code,
     parity: hammingCode.parity,
+    isError: hammingCode.isError,
+    dataBits: hammingCode.dataBits,
     bitsArray: hammingCode.codeArray,
     efficiency: hammingCode.efficiency,
+    errorIndex: hammingCode.errorIndex,
     dataBitSize: hammingCode.dataBitSize,
     parityPositions: hammingCode.parityPositions,
     hammingCodeSize: hammingCode.hammingCodeSize,
     redundantBitsSize: hammingCode.redundantBitsSize,
+
     isLoading: status === STATES.loading,
     getHammingCode,
+    getDataBits,
   };
 };
 

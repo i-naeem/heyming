@@ -10,8 +10,8 @@ import {
   useMediaQuery,
   useOutsideClick,
 } from '@chakra-ui/react';
-import isPowerOf2 from '../helpers/isPowerOfTwo';
 import { FaCompress, FaExpand } from 'react-icons/fa';
+import isPowerOf2 from '../helpers/isPowerOfTwo';
 import { useState, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Bit from './Bit';
@@ -19,6 +19,8 @@ import Bit from './Bit';
 const HammingCodeBits = ({
   bitsArray = [],
   parityPositions,
+  errorIndex,
+  isError,
   parity,
   ...rest
 }) => {
@@ -26,10 +28,8 @@ const HammingCodeBits = ({
   const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
   const [isCompact, handler] = useBoolean(false);
   const ref = useRef();
-  useOutsideClick({
-    ref,
-    handler: () => setActiveParityBit(-1),
-  });
+
+  useOutsideClick({ ref, handler: () => setActiveParityBit(-1) });
 
   // Get the associated data bits of activeParity bit
   const associatedDataBits = useMemo(() => {
@@ -95,6 +95,7 @@ const HammingCodeBits = ({
               bitIndex={bitIndex}
               isCompact={isCompact}
               isParityBit={isParityBit}
+              errorIndex={errorIndex}
               onClick={() => handleBitClick(bitIndex, isParityBit)}
               opacity={
                 activeParityBit === -1 || associatedDataBits.includes(bitIndex)
@@ -112,6 +113,8 @@ const HammingCodeBits = ({
 HammingCodeBits.propTypes = {
   bitsArray: PropTypes.arrayOf(PropTypes.number).isRequired,
   parityPositions: PropTypes.array.isRequired,
+  errorIndex: PropTypes.number,
+  isError: PropTypes.bool,
 };
 
 export default HammingCodeBits;

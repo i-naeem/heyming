@@ -66,12 +66,14 @@ const encode = async (data_bits, isOdd = false) => {
     code: [...hammingCode].reverse().join(''),
     dataBitSize: dataLength,
     codeArray: hammingCode,
+    dataBits: data_bits,
     redundantBitsSize,
     hammingCodeSize,
+    isError: false,
+    errorIndex: 0,
+
     efficiency: ((100 * dataLength) / hammingCodeSize).toFixed(2),
-
     parityPositions,
-
     parity: isOdd ? 'Odd' : 'Even',
   };
 };

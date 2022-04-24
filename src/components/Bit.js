@@ -2,15 +2,15 @@ import { Button, Heading, Stack, Text, useMediaQuery } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
 const Bit = props => {
-  const { bit, bitIndex, isCompact, isParityBit, ...rest } = props;
+  const { bit, bitIndex, isCompact, isParityBit, errorIndex, ...rest } = props;
   const [isLargerThan900] = useMediaQuery('(min-width: 900px)');
 
   return (
     <Button
       borderRadius="sm"
-      colorScheme="teal"
+      colorScheme={errorIndex === bitIndex ? 'red' : 'teal'}
       minH={isCompact ? 'auto' : '80px'}
-      variant={isParityBit ? 'solid' : 'outline'}
+      variant={isParityBit || errorIndex === bitIndex ? 'solid' : 'outline'}
       {...rest}
     >
       <Stack>
@@ -32,6 +32,7 @@ const Bit = props => {
 Bit.propTypes = {
   isCompact: PropTypes.bool,
   isParityBit: PropTypes.bool,
+  errorIndex: PropTypes.number,
   bit: PropTypes.number.isRequired,
   bitIndex: PropTypes.number.isRequired,
 };
