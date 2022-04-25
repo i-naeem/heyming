@@ -9,6 +9,8 @@ import {
   Icon,
   Box,
   Text,
+  Tag,
+  Tooltip,
 } from '@chakra-ui/react';
 import HammingCodeBits from '../components/HammingCodeBits';
 import { FaExclamationCircle } from 'react-icons/fa';
@@ -41,7 +43,10 @@ const Decoder = props => {
       <SimpleGrid columns={1}>
         <Box p="3">
           <Heading size="lg" mb="1" align="center">
-            Hamming Code Decoder
+            Hamming Code Decoder{' '}
+            <Tooltip label="Its not fully complete yet. Report on github if you found any bugs.">
+              <Tag colorScheme="blue">Beta</Tag>
+            </Tooltip>
           </Heading>
           <Text align="center">
             <strong>Hamming Code Decoder</strong> decodes the given hamming
