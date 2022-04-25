@@ -109,19 +109,31 @@ const Home = props => {
 
           <Text as="p">
             Read more about Hamming Code:{' '}
-            <Link href="https://en.wikipedia.org/wiki/Hamming_code">
+            <Link
+              color="blue"
+              target="_blank"
+              href="https://en.wikipedia.org/wiki/Hamming_code"
+            >
               https://en.wikipedia.org/wiki/Hamming_code
             </Link>
           </Text>
           <Text as="p">
             Read more about error-correcting code:{' '}
-            <Link href="https://en.wikipedia.org/wiki/Linear_code">
+            <Link
+              color="blue"
+              target="_blank"
+              href="https://en.wikipedia.org/wiki/Linear_code"
+            >
               https://en.wikipedia.org/wiki/Linear_code
             </Link>
           </Text>
           <Text>
             Learn hamming code from a video:{' '}
-            <Link href="https://www.3blue1brown.com/lessons/hamming-codes">
+            <Link
+              color="blue"
+              target="_blank"
+              href="https://www.3blue1brown.com/lessons/hamming-codes"
+            >
               3Blue1Brown Hamming Code Explanation
             </Link>
           </Text>
