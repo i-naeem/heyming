@@ -31,7 +31,7 @@ const Home = props => {
           <UnorderedList px="3">
             <ListItem>Encodes Data Bits</ListItem>
             <ListItem>Decodes Hamming Code</ListItem>
-            <ListItem>Detect Single Bit Errors</ListItem>
+            <ListItem>Detect Single Bit Error</ListItem>
           </UnorderedList>
         </Article>
 
