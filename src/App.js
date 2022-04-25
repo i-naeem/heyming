@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Encoder from './routes/Encoder';
 import Decoder from './routes/Decoder';
+import Home from './routes/Home';
 import React from 'react';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Header />
         <Box as="main" p={4} minH="calc(100vh - 70px - 70px)">
           <Routes>
+            <Route exact path="/learn" element={<Home />} />
             <Route exact path="/heyming" element={<Encoder />} />
             <Route exact path="/decoder" element={<Decoder />} />
             <Route

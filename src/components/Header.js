@@ -10,7 +10,7 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { APP_NAME } from '../configs/constants';
-import { FaGithub, FaHashtag } from 'react-icons/fa';
+import { FaGithub, FaHashtag, FaQuestion } from 'react-icons/fa';
 import { Link as RouterLink } from 'react-router-dom';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
 
@@ -57,6 +57,19 @@ const Header = props => {
               >
                 Decoder
               </Button>
+
+              <IconButton
+                size={size}
+                to="/learn"
+                as={RouterLink}
+                fontSize="lg"
+                marginLeft="2"
+                color="current"
+                variant="outline"
+                icon={<FaQuestion />}
+                aria-label="Learn more about hamming code"
+              />
+
               <IconButton
                 as="a"
                 size={size}
