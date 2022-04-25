@@ -33,8 +33,8 @@ const Encoder = props => {
         </Heading>
         <Text align="center">
           <strong>Hamming Code Encoder</strong> encodes the given data bits. The
-          size of the data bits should be <strong>4</strong> and all the bit
-          must be in binary format.
+          size of the data bits should be at least <strong>4</strong> and all
+          the bit must be in binary format.
         </Text>
       </Box>
 

@@ -50,10 +50,15 @@ const Decoder = props => {
           </Heading>
           <Text align="center">
             <strong>Hamming Code Decoder</strong> decodes the given hamming
-            bits. The size of the hamming bits should be <strong>4</strong> and
-            all the bit must be in binary format. It can not detect two bits
-            array so if your input contains 2 bit or more than 2 bit error, the
-            result would be unexpected.
+            bits. The size of the hamming bits should be at least{' '}
+            <strong>7</strong> and all the bit must be in binary format.{' '}
+          </Text>
+
+          <Text align="center">
+            <em>
+              It can not detect two bits array so if your input contains 2 bit
+              or more than 2 bit error, the result would be unexpected.
+            </em>
           </Text>
         </Box>
 
