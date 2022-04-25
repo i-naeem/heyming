@@ -8,6 +8,7 @@ import {
   Button,
   useMediaQuery,
   Icon,
+  Tooltip,
 } from '@chakra-ui/react';
 import { APP_NAME } from '../configs/constants';
 import { FaGithub, FaHashtag, FaQuestion } from 'react-icons/fa';
@@ -43,45 +44,48 @@ const Header = props => {
             <HStack spacing={2}>
               <Button
                 size={size}
-                as={RouterLink}
                 to="/heyming"
+                as={RouterLink}
                 leftIcon={<Icon as={FaHashtag} />}
               >
                 Encoder
               </Button>
               <Button
                 size={size}
-                as={RouterLink}
                 to="/decoder"
+                as={RouterLink}
                 leftIcon={<Icon as={FaHashtag} />}
               >
                 Decoder
               </Button>
+              <Tooltip label="Learn about hamming code">
+                <IconButton
+                  size={size}
+                  to="/learn"
+                  as={RouterLink}
+                  fontSize="lg"
+                  marginLeft="2"
+                  color="current"
+                  variant="outline"
+                  icon={<FaQuestion />}
+                  aria-label="Learn more about hamming code"
+                />
+              </Tooltip>
 
-              <IconButton
-                size={size}
-                to="/learn"
-                as={RouterLink}
-                fontSize="lg"
-                marginLeft="2"
-                color="current"
-                variant="outline"
-                icon={<FaQuestion />}
-                aria-label="Learn more about hamming code"
-              />
-
-              <IconButton
-                as="a"
-                size={size}
-                fontSize="lg"
-                marginLeft="2"
-                target="_blank"
-                color="current"
-                variant="outline"
-                icon={<FaGithub />}
-                aria-label="Link to github source"
-                href="https://github.com/i-naeem/heyming"
-              />
+              <Tooltip label="Star the project on github">
+                <IconButton
+                  as="a"
+                  size={size}
+                  fontSize="lg"
+                  marginLeft="2"
+                  target="_blank"
+                  color="current"
+                  variant="outline"
+                  icon={<FaGithub />}
+                  aria-label="Link to github source"
+                  href="https://github.com/i-naeem/heyming"
+                />
+              </Tooltip>
 
               <ColorModeSwitcher justifySelf="flex-end" size={size} />
             </HStack>
