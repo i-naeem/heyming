@@ -110,7 +110,7 @@ const Home = props => {
           <Text as="p">
             Read more about Hamming Code:{' '}
             <Link
-              color="blue"
+              color="blue.500"
               target="_blank"
               href="https://en.wikipedia.org/wiki/Hamming_code"
             >
@@ -120,7 +120,7 @@ const Home = props => {
           <Text as="p">
             Read more about error-correcting code:{' '}
             <Link
-              color="blue"
+              color="blue.500"
               target="_blank"
               href="https://en.wikipedia.org/wiki/Linear_code"
             >
@@ -130,7 +130,7 @@ const Home = props => {
           <Text>
             Learn hamming code from a video:{' '}
             <Link
-              color="blue"
+              color="blue.500"
               target="_blank"
               href="https://www.3blue1brown.com/lessons/hamming-codes"
             >
