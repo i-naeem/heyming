@@ -51,7 +51,7 @@ const Decoder = props => {
           <Text align="center">
             <strong>Hamming Code Decoder</strong> decodes the given hamming
             bits. The size of the hamming bits should be at least{' '}
-            <strong>7</strong> and all the bit must be in binary format.{' '}
+            <strong>7</strong> and all the bit must be in binary format.
           </Text>
 
           <Text align="center">
