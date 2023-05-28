@@ -25,8 +25,6 @@ Heyming is a <strong> Hamming Code <strong> encoder and decoder which encodes gi
 
 ![Heyming Demo Picture](demo.jpeg)
 
-Heyming is a hamming code encoder and decoder. It can encode data bits to hamming code. It also decodes hamming code and check for single bit errors.
-
 ### Features
 
 - Encodes data bits to hamming code.
