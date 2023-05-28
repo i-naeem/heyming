@@ -7,7 +7,7 @@
 </a>
 <h3 align="center">Heyming</h3>
 <p align="center">
-Heyming is a <strong> Hamming Code <strong> encode which encodes given data in hamming code and decodes hamming code.
+Heyming is a <strong> Hamming Code <strong> encoder and decoder which encodes given data in hamming code and decodes hamming code.
 <br />
 
 <a href="https://i-naeem.github.io/heyming">View Demo</a>
