@@ -110,6 +110,6 @@ Distributed under the MIT License.
 
 ## Contact
 
-Mohammad Naeem - [@nemoxhan](https://twitter.com/nemoxhan)
+Mohammad Naeem - [@nemoxhan](https://twitter.com/0x656e)
 
 Project Link: [https://github.com/i-naeem/heyming](https://github.com/i-naeem/heyming)
